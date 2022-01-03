@@ -1,2 +1,6 @@
+import { combineReducers } from "redux";
 
-export { default as counter } from './counter'
+
+const reducer = combineReducers({})
+
+export default reducer
