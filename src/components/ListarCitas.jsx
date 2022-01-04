@@ -1,17 +1,15 @@
-import React, {useEffect, useState, Fragment} from 'react'
-import CONNECTION from '../config/CONNECTION'
+import React, {Fragment, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { loadCitasAsync } from './../config/thunks';
 
 export default function ListarCitas() {
-    
-    const [state, setState] = useState([]);
+    const dispatch = useDispatch();
 
-    useEffect(()=> {
-        fetch(CONNECTION+"/citasReactivas", {
-            method:'GET'
-        })
-        .then(value => value.json())
-        .then((citas) => setState(citas))
-    }, [])
+    const {isLoading, registroCitas, error} = useSelector( (state) => state.citas );
+
+    useEffect(() => {
+        dispatch(loadCitasAsync());
+    },[]);
 
     return (
         <Fragment>
@@ -26,7 +24,7 @@ export default function ListarCitas() {
                 </tr>
             </thead>
             <tbody>
-            {state.map((cita)=> {
+            {registroCitas.map((cita)=> {
                 return(
                     <tr>    
                     <td>{cita.id}</td>

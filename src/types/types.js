@@ -1,4 +1,6 @@
 
-export const ADDONE = 'add-cita'
+export const CITAS_START = 'START'
 
-export const UPDATE = 'update'
+export const LOAD_SUCCES = 'LOAD_SUCCES'
+
+export const LOAD_ERROR = 'LOAD_ERROR'
